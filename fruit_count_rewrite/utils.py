@@ -152,60 +152,6 @@ def print_summary(exp_name,scores,train_record):
                                                         train_record['best_mse']) )
     print( '='*50)
 
-def print_WE_summary(log_txt,epoch,scores,train_record,c_maes):
-    mae, mse, loss = scores
-    # pdb.set_trace()
-    with open(log_txt, 'a') as f:
-        f.write('='*15 + '+'*15 + '='*15 + '\n')
-        f.write(str(epoch) + '\n\n')
-        f.write('  [mae %.4f], [val loss %.4f]\n\n' % (mae, loss))
-        f.write('    list: ' + str(np.transpose(c_maes.avg)) + '\n')
-
-
-        f.write('='*15 + '+'*15 + '='*15 + '\n\n')
-
-    print( '='*50 )
-    print( '    '+ '-'*20 )
-    print( '    [mae %.2f mse %.2f], [val loss %.4f]' % (mae, mse, loss) )        
-    print( '    '+ '-'*20 )
-    print( '[best] [model: %s] , [mae %.2f], [mse %.2f]' % (train_record['best_model_name'],\
-                                                        train_record['best_mae'],\
-                                                        train_record['best_mse']) )
-    print( '='*50 )
-
-
-def print_GCC_summary(log_txt,epoch, scores,train_record,c_maes,c_mses):
-    mae, mse, loss = scores
-    c_mses['level'] = np.sqrt(c_mses['level'].avg)
-    c_mses['time'] = np.sqrt(c_mses['time'].avg)
-    c_mses['weather'] = np.sqrt(c_mses['weather'].avg)
-    with open(log_txt, 'a') as f:
-        f.write('='*15 + '+'*15 + '='*15 + '\n')
-        f.write(str(epoch) + '\n\n')
-        f.write('  [mae %.4f mse %.4f], [val loss %.4f]\n\n' % (mae, mse, loss))
-        f.write('  [level: mae %.4f mse %.4f]\n' % (np.average(c_maes['level'].avg), np.average(c_mses['level'])))
-        f.write('    list: ' + str(np.transpose(c_maes['level'].avg)) + '\n')
-        f.write('    list: ' + str(np.transpose(c_mses['level'])) + '\n\n')
-
-        f.write('  [time: mae %.4f mse %.4f]\n' % (np.average(c_maes['time'].avg), np.average(c_mses['time'])))
-        f.write('    list: ' + str(np.transpose(c_maes['time'].avg)) + '\n')
-        f.write('    list: ' + str(np.transpose(c_mses['time'])) + '\n\n')
-
-        f.write('  [weather: mae %.4f mse %.4f]\n' % (np.average(c_maes['weather'].avg), np.average(c_mses['weather'])))
-        f.write('    list: ' + str(np.transpose(c_maes['weather'].avg)) + '\n')
-        f.write('    list: ' + str(np.transpose(c_mses['weather']))+ '\n\n')
-
-        f.write('='*15 + '+'*15 + '='*15 + '\n\n')
-
-    print( '='*50 )
-    print( '    '+ '-'*20 )
-    print( '    [mae %.2f mse %.2f], [val loss %.4f]' % (mae, mse, loss) )
-    print( '    '+ '-'*20 )
-    print( '[best] [model: %s] , [mae %.2f], [mse %.2f]' % (train_record['best_model_name'],\
-                                                        train_record['best_mae'],\
-                                                        train_record['best_mse']) )
-    print( '='*50 )   
-
 
 def update_model(net,optimizer,scheduler,epoch,i_tb,exp_path,exp_name,scores,train_record,log_file=None):
 
