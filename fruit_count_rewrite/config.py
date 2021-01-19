@@ -13,14 +13,14 @@ now = time.strftime("%m-%d_%H-%M", time.localtime())
 
 ########################不同数据集需要修改常量##################
 NET = 'Res101_SFCN'
-WORK_DIR = "/kaggle/working"
+WORK_DIR = "H:/fruit_count_rewrite"
 # 数据集路径
-DATA_PATH = '/kaggle/input/...'
+DATA_PATH = 'H:/fruit_count_rewrite/apple'
 # 可视化图像存储路径
 #VIS_PATH = "C:/Users/50106/Desktop/fruit_number/runs/exp1"
-VIS_PATH = "H:/upload"
+#VIS_PATH = "H:/upload"
 # 训练日志路径
-LOG_PATH = "H:/upload/log.txt"
+#LOG_PATH = "H:/upload/log.txt"
 DATASET = 'FRUIT'
 #训练轮数
 MAX_EPOCH = 30
@@ -37,7 +37,7 @@ LR_DECAY_START = -1  # when training epoch is more than it, the learning rate wi
 NUM_EPOCH_LR_DECAY = 1  # decay frequency
 
 EXP_NAME = now + '_' +DATASET + '_' + NET + '_' + str(LR)
-EXP_PATH = '/kaggle/working/exp1'
+EXP_PATH = 'H:/fruit_count_rewrite/exp1'
 ############################################################
 
 
