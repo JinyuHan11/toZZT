@@ -1,12 +1,11 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import pdb
 
 
-class CrowdCounter(nn.Module):
+
+class FruitCounter(nn.Module):
     def __init__(self, gpus, model_name):
-        super(CrowdCounter, self).__init__()
+        super(FruitCounter, self).__init__()
         from model_build import Res101_SFCN as net
 
         self.CCN = net()
