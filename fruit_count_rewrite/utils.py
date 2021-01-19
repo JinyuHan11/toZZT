@@ -66,11 +66,11 @@ def logger(exp_path, exp_name, work_dir, exception, resume=False):
     writer = SummaryWriter(exp_path+ '/' + exp_name)
     log_file = exp_path + '/' + exp_name + '/' + exp_name + '.txt'
     
-    cfg_file = open('./config.py',"r")  
-    cfg_lines = cfg_file.readlines()
+    #cfg_file = open('./config.py',"r")
+    #cfg_lines = cfg_file.readlines()
     
-    with open(log_file, 'a') as f:
-        f.write(''.join(cfg_lines) + '\n\n\n\n')
+    # with open(log_file, 'a') as f:
+    #     f.write(''.join(cfg_lines) + '\n\n\n\n')
 
     if not resume:
         copy_cur_env(work_dir, exp_path+ '/' + exp_name + '/code', exception)
@@ -80,26 +80,6 @@ def logger(exp_path, exp_name, work_dir, exception, resume=False):
 
 
 
-def logger_for_CMTL(exp_path, exp_name, work_dir, exception, resume=False):
-    
-    if not os.path.exists(exp_path):
-        os.mkdir(exp_path)
-
-    if not os.path.exists(exp_path+ '/' + exp_name):
-        os.mkdir(exp_path+ '/' + exp_name)
-    log_file = exp_path + '/' + exp_name + '/' + exp_name + '.txt'
-    
-    cfg_file = open('./config.py',"r")  
-    cfg_lines = cfg_file.readlines()
-    
-    with open(log_file, 'a') as f:
-        f.write(''.join(cfg_lines) + '\n\n\n\n')
-
-    if not resume:
-        copy_cur_env(work_dir, exp_path+ '/' + exp_name + '/code', exception)
-
-
-    return log_file
 
 def logger_txt(log_file,epoch,scores):
 
@@ -114,9 +94,6 @@ def logger_txt(log_file,epoch,scores):
         f.write(snapshot_name + '\n')
         f.write('    [mae %.2f mse %.2f], [val loss %.4f]\n' % (mae, mse, loss))
         f.write('='*15 + '+'*15 + '='*15 + '\n\n')    
-
-
-
 
 
 def vis_results(exp_name, epoch, writer, restore, img, pred_map, gt_map):
@@ -138,19 +115,6 @@ def vis_results(exp_name, epoch, writer, restore, img, pred_map, gt_map):
 
     writer.add_image(exp_name + '_epoch_' + str(epoch+1), x)
 
-
-
-def print_summary(exp_name,scores,train_record):
-    mae, mse, loss = scores
-    print( '='*50 )
-    print( exp_name )
-    print( '    '+ '-'*20 )
-    print( '    [mae %.2f mse %.2f], [val loss %.4f]' % (mae, mse, loss) )        
-    print( '    '+ '-'*20 )
-    print( '[best] [model: %s] , [mae %.2f], [mse %.2f]' % (train_record['best_model_name'],\
-                                                        train_record['best_mae'],\
-                                                        train_record['best_mse']) )
-    print( '='*50)
 
 
 def update_model(net,optimizer,scheduler,epoch,i_tb,exp_path,exp_name,scores,train_record,log_file=None):
@@ -262,7 +226,17 @@ class Timer(object):
             return self.diff
 
 
-
+def print_summary(exp_name,scores,train_record):
+    mae, mse, loss = scores
+    print( '='*50 )
+    print( exp_name )
+    print( '    '+ '-'*20 )
+    print( '    [mae %.2f mse %.2f], [val loss %.4f]' % (mae, mse, loss) )
+    print( '    '+ '-'*20 )
+    print( '[best] [model: %s] , [mae %.2f], [mse %.2f]' % (train_record['best_model_name'],\
+                                                        train_record['best_mae'],\
+                                                        train_record['best_mse']) )
+    print( '='*50)
 
 
 
