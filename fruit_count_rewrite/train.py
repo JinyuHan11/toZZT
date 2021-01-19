@@ -60,7 +60,7 @@ for epoch in range(0, MAX_EPOCH):
         gt_map = Variable(gt_map).cuda()
         # train
         pred_map = net(img)
-        loss = loss_mse(pred_map, gt_map)
+        loss = loss_mse(pred_map.squeeze(), gt_map.squeeze())
         loss.backward()
         optimizer.zero_grad()
         optimizer.step()

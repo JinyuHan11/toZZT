@@ -2,7 +2,7 @@ from config import *
 from img_preprocessing_utils import *
 import torchvision.transforms as standard_transforms
 from torch.utils.data import DataLoader
-from make_dataset import FRUIT
+from dataset_making import FRUIT
 
 def loading_data():
     mean_std = MEAN_STD #正则化参数
