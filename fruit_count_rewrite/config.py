@@ -48,12 +48,13 @@ LOG_PARA = 100.
 RESUME_MODEL = ''
 
 NET = 'Res101_SFCN'
-
-PRE_GCC = False  # use the pretrained model on GCC dataset
+#是否使用预训练模型
+PRE_GCC = False
 PRE_GCC_MODEL = 'path to model'  # path to model
 
+#是否恢复之前训练
 RESUME = False  # contine training
-RESUME_PATH = './exp/2020-12-2/latest_state.pth'  #
+RESUME_PATH = 'path to .pth'  #
 
 LAMBDA_1 = 1e-4  # SANet:0.001 CMTL 0.0001
 
