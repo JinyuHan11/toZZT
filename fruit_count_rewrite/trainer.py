@@ -104,8 +104,8 @@ class Trainer():
 
                 for i_img in range(pred_map.shape[0]):
                 
-                    pred_cnt = np.sum(pred_map[i_img])/self.cfg_data.LOG_PARA
-                    gt_count = np.sum(gt_map[i_img])/self.cfg_data.LOG_PARA
+                    pred_cnt = np.sum(pred_map[i_img])/LOG_PARA
+                    gt_count = np.sum(gt_map[i_img])/LOG_PARA
 
                     
                     losses.update(self.net.loss.item())
