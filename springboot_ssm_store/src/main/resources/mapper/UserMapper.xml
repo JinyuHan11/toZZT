@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--两个绑定:一个映射-->
+<mapper namespace="com.itheima.springboot_ssm_store.dao.UserDao">
+    <!--查询所有员工！-->
+    <select id="login" resultType="user">
+    SELECT * FROM shop_user WHERE username=#{username} AND PASSWORD=#{password}
+  </select>
+
+
+    <insert id="regist">
+     INSERT INTO shop_user(uid,username,PASSWORD,NAME,email,birthday,gender)
+      VALUES(#{uid},#{username},#{password},#{name},#{email},#{birthday},#{gender})
+    </insert>
+
+</mapper>

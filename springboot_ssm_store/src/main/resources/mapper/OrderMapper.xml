@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--两个绑定:一个映射-->
+<mapper namespace="com.itheima.springboot_ssm_store.dao.OrderDao">
+
+    <!-- 保存订单 -->
+    <insert id="saveOrder">
+      INSERT INTO orders(oid,ordertime,total,state,uid)
+        VALUES(#{oid},#{ordertime},#{total},#{state},#{uid});
+    </insert>
+    <!-- 保存订单项 -->
+    <insert id="saveOrderItem">
+      INSERT INTO orderitem(oid,ordertime,total,state,uid)
+        values (#{coutn},#{subtotal},#{pid},#{oid});
+    </insert>
+
+    <select id="getOrdersListByPage" resultType="Order">
+        select oid,ordertime,total,uid from orders where uid = #{uid};
+
+    </select>
+
+
+    <select id="getOrderViewList" resultType="OrderItemView">
+        SELECT p.'pid',p.'pname',p.'pimage',p.'shop_price',
+        oi.'count',oi.'subtotal'
+         FROM orderitem oi,product p
+         WHERE oi.'pid' = p.'pid' AND oi.'oid' = #{oid}
+
+    </select>
+
+    <select id="getOrdersById" resultType="Order">
+      select oid,ordertime,total,state,uid
+      from orders where uid = #{uid};
+
+    </select>
+
+    <update id="updateOrders">
+        update orders set name = #{name},address = #{address},telephone = #{telephone}
+        where oid = #{oid}
+    </update>
+
+    <update id="updateOrdersStateById">
+        update orders set state=#{state} where oid=#{oid}
+    </update>
+
+    <update id="UpdateOrderById" parameterType="Orders" >
+        update orders set address=#{address},name=#{name},telephone=#{telephone} where oid=#{oid}
+    </update>
+
+</mapper>
