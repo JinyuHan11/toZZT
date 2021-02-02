@@ -85,3 +85,4 @@ def get_mean_point(array_x,array_y,array_z):
     # 返回标准点
     return stand_x, stand_y, stand_z
 
+
