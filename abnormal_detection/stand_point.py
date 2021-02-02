@@ -5,31 +5,10 @@
 import scipy
 from util import *
 
-#获取各维度平均值，取消之前（max+min）/2的方法
-def get_stand_point(x_array,y_array,z_array):
-    len_x = len(x_array)
-    len_y = len(y_array)
-    len_z = len(z_array)
-    sum_x = 0
-    sum_y = 0
-    sum_z = 0
 
-    for temp_value in x_array:
-        sum_x = sum_x+temp_value
-    for temp_value in y_array:
-        sum_y = sum_y+temp_value
-    for temp_value in z_array:
-        sum_z = sum_z+temp_value
 
-    #保留两位小数
-    stand_x = round(sum_x/len_x,2)
-    stand_y = round(sum_y/len_y,2)
-    stand_z = round(sum_z/len_z,2)
 
-    #返回标准点
-    return stand_x,stand_y,stand_z
-
-#获取各维度数组
+#获取各维度数组,获取各维度平均值点，取消之前（max+min）/2的方法
 def abstract_rgb(pic_path,meanSwitch=True,folderPath=None):
     '''
     meanSwitch=True:使用单个数据集mean
@@ -67,7 +46,10 @@ def abstract_rgb(pic_path,meanSwitch=True,folderPath=None):
     z_array = np.array(z)
     #print('xArray:',len(x_array))
     #print('xArray:',x_array)
-    return get_stand_point(x_array,y_array,z_array)
+    return get_mean_point(x_array,y_array,z_array)
+
+
+
 
 
 
