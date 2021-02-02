@@ -5,4 +5,4 @@
 '''
 
 def remove_bg(path):
-    return 0;
+    pass
