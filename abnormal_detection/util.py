@@ -6,6 +6,7 @@
 import numpy as np
 import scipy
 import os
+import math
 
 def all_mean(folderPath):  # folderPath:数据集路径
     img_lists = os.listdir(folderPath)
@@ -85,4 +86,7 @@ def get_mean_point(array_x,array_y,array_z):
     # 返回标准点
     return stand_x, stand_y, stand_z
 
+#此函数用来获得两点间距离
+def pp_dist(array1,array2):
+    return math.sqrt(math.pow(array1[0]-array2[0],2)+math.pow(array1[1]-array2[1],2)+math.pow(array1[2]-array2[2],2))
 
