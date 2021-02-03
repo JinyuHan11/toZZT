@@ -9,7 +9,7 @@ from util import *
 
 
 #获取各维度数组,获取各维度平均值点，取消之前（max+min）/2的方法
-def abstract_rgb(pic_path,meanSwitch=True,folderPath=None):
+def get_stand_point(pic_path,meanSwitch=True,folderPath=None):
     '''
     meanSwitch=True:使用单个数据集mean
     meanSwitch=False:使用整个数据集mean
